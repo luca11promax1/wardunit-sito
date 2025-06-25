@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// datasource ordersdb {
+//   provider = "sqlite"
+//   url      = env("DATABASE_SQLITE_URL")
+// }
+
+model premium_servers {
+  guild_id            BigInt   @id
+  added_by            BigInt
+  manager_id          BigInt?
+  added_at            DateTime @default(now())
+  expires_at          DateTime?
+  duration_days       Int?
+  active_features     String?
+  feature_expirations String?
+}
+
+// model orders {
+//   id         Int      @id @default(autoincrement())
+//   user_id    String
+//   amount     Float
+//   currency   String
+//   product    String
+//   status     String
+//   created_at DateTime @default(now())
+//   paypal_id  String?
+//
+//   @@map("orders")
+//   @@datasource(ordersdb)
+// }
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  image_url   String?
+  active      Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}

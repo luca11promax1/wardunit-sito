@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma-orders"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_SQLITE_URL")
+}
+
+model orders {
+  id         Int      @id @default(autoincrement())
+  user_id    String
+  amount     Float
+  currency   String
+  product    String
+  status     String
+  created_at DateTime @default(now())
+  paypal_id  String?
+
+  @@map("orders")
+}

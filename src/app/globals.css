@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0e1129;
+  --foreground: #f3f4fa;
+  --primary: #4f46e5;
+  --primary-dark: #312e81;
+  --accent: #38bdf8;
+  --accent-dark: #0ea5e9;
+  --card: #181c3a;
+  --card-dark: #10132a;
+  --gradient: linear-gradient(135deg, #4f46e5 0%, #38bdf8 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a23;
+    --foreground: #f3f4fa;
+    --primary: #6366f1;
+    --primary-dark: #3730a3;
+    --accent: #38bdf8;
+    --accent-dark: #0ea5e9;
+    --card: #181c3a;
+    --card-dark: #10132a;
+    --gradient: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 32px 0 rgba(80, 80, 180, 0.10);
+  transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 40px 0 rgba(80, 80, 180, 0.18);
+  background: var(--card-dark);
+  transform: translateY(-4px) scale(1.025);
+}
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  color: #38bdf8;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18), 0 1px 0 #fff;
+}
+
+.text-strong {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 0 #fff;
+}
+
+.btn {
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 12px 0 rgba(56,189,248,0.10);
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 24px 0 rgba(56,189,248,0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(32px);
+  animation: slideUp 0.8s cubic-bezier(.4,1.4,.6,1) forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
