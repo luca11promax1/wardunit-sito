@@ -12,7 +12,7 @@ export default function ChiSiamo() {
         </div>
         <div className="card p-6 mb-10">
           <h2 className="text-2xl font-bold mb-2 gradient-text">Missione e Visione</h2>
-          <p className="text-gray-300">Vogliamo rendere ogni server Discord un luogo sicuro, accogliente e protetto. Guardiamo al futuro con l'obiettivo di innovare costantemente e offrire sempre nuove funzionalità.</p>
+          <p className="text-gray-300">Vogliamo rendere ogni server Discord un luogo sicuro, accogliente e protetto. Guardiamo al futuro con l&apos;obiettivo di innovare costantemente e offrire sempre nuove funzionalità.</p>
         </div>
         <div className="card p-6">
           <h2 className="text-2xl font-bold mb-2 gradient-text">Il Team</h2>

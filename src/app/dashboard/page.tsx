@@ -30,16 +30,10 @@ export default function DashboardPage() {
   const [premiums, setPremiums] = useState<Premium[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showPayPalModal, setShowPayPalModal] = useState(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [isStaff, setIsStaff] = useState(false);
 
   const user = session?.user as DiscordUser | undefined;
-
-  // Gestione ritorno da PayPal
-  const paypalStatus = searchParams.get("paypal");
-  const paypalToken = searchParams.get("token");
 
   useEffect(() => {
     if (status === "authenticated" && user?.id) {

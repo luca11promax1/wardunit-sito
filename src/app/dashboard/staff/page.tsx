@@ -20,7 +20,7 @@ export default function StaffPanel() {
     fetch("/api/staff/check", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ discordId: (session.user as any)?.id }),
+      body: JSON.stringify({ discordId: session && session.user ? (session.user as { id?: string }).id : undefined }),
     })
       .then((res) => res.json())
       .then((data) => {

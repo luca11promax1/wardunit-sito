@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare global {
   interface Window {
     paypal: any;
@@ -27,13 +28,13 @@ export default function PayPalButton({ amount = "4.99", onSuccess }: { amount?: 
     function renderButton() {
       if (window.paypal && paypalRef.current) {
         window.paypal.Buttons({
-          createOrder: (data: any, actions: any) => {
+          createOrder: (data: unknown, actions: { order: { create: (options: { purchase_units: { amount: { value: string } }[] }) => Promise<string> } }) => {
             return actions.order.create({
               purchase_units: [{ amount: { value: amount } }],
             });
           },
-          onApprove: (data: any, actions: any) => {
-            return actions.order.capture().then((details: any) => {
+          onApprove: (data: unknown, actions: { order: { capture: () => Promise<{ payer: { name: { given_name: string } } }> } }) => {
+            return actions.order.capture().then((details: { payer: { name: { given_name: string } } }) => {
               alert("Pagamento completato da " + details.payer.name.given_name);
               if (onSuccess) onSuccess();
               // Qui puoi chiamare una tua API per salvare l'ordine

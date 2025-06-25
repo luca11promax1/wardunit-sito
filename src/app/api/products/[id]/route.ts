@@ -23,7 +23,7 @@ async function isStaff(discordId: string): Promise<boolean> {
 }
 
 // PUT: modifica prodotto (solo staff)
-export async function PUT(req: NextRequest, context: any) {
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { discordId, name, description, price, image_url, active } = body;
@@ -39,13 +39,13 @@ export async function PUT(req: NextRequest, context: any) {
       data: { name, description, price, image_url, active },
     });
     return NextResponse.json(product);
-  } catch (err) {
-    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
+  } catch (err: unknown) {
+    return NextResponse.json({ error: err instanceof Error ? err.message : "Errore" }, { status: 500 });
   }
 }
 
 // DELETE: elimina prodotto (solo staff)
-export async function DELETE(req: NextRequest, context: any) {
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { discordId } = body;
@@ -58,7 +58,7 @@ export async function DELETE(req: NextRequest, context: any) {
     }
     await prisma.product.delete({ where: { id } });
     return NextResponse.json({ success: true });
-  } catch (err) {
-    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
+  } catch (err: unknown) {
+    return NextResponse.json({ error: err instanceof Error ? err.message : "Errore" }, { status: 500 });
   }
 } 

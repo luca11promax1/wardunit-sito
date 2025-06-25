@@ -6,7 +6,7 @@ export default function FAQ() {
         <div className="mb-10">
           <h2 className="text-2xl font-bold mb-4">Generali</h2>
           <div className="mb-6">
-            <h3 className="font-semibold">Cos'è WardUnit?</h3>
+            <h3 className="font-semibold">Cos&apos;è WardUnit?</h3>
             <p className="text-gray-300">WardUnit è un bot Discord per la sicurezza e la moderazione avanzata dei server.</p>
           </div>
           <div className="mb-6">

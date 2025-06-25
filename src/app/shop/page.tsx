@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Product {
   id: number;
@@ -80,9 +81,11 @@ export default function Shop() {
               >
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink-400 opacity-20 rounded-full blur-2xl z-0 animate-pulse" />
                 {product.image_url && (
-                  <img
+                  <Image
                     src={product.image_url}
                     alt={product.name}
+                    width={192}
+                    height={192}
                     className="w-48 h-48 object-contain mb-4 rounded-2xl shadow-lg border-2 border-pink-300/40 bg-white/30 group-hover:scale-110 group-hover:shadow-pink-400/60 transition-transform duration-300 z-10"
                   />
                 )}
@@ -129,9 +132,11 @@ export default function Shop() {
             </button>
             <div className="flex flex-col items-center z-10">
               {selectedProduct.image_url && (
-                <img
+                <Image
                   src={selectedProduct.image_url}
                   alt={selectedProduct.name}
+                  width={192}
+                  height={192}
                   className="w-48 h-48 object-contain mb-4 rounded-2xl shadow-lg border-2 border-pink-300/40 bg-white/30"
                 />
               )}

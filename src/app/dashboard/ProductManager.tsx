@@ -72,7 +72,7 @@ export default function ProductManager() {
     setSaving(true);
     setError(null);
     setSuccess(null);
-    const discordId = (session?.user as any)?.id;
+    const discordId = session && session.user ? (session.user as { id?: string }).id : undefined;
     const payload = {
       discordId,
       name: form.name,
@@ -105,7 +105,7 @@ export default function ProductManager() {
     setSaving(true);
     setError(null);
     setSuccess(null);
-    const discordId = (session?.user as any)?.id;
+    const discordId = session && session.user ? (session.user as { id?: string }).id : undefined;
     try {
       const res = await fetch(`/api/products/${id}`, {
         method: "DELETE",

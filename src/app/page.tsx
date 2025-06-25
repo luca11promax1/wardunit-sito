@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -53,11 +54,11 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-8 text-center text-blue-700">Cosa dicono di noi</h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch max-w-4xl mx-auto">
             <div className="p-6 flex-1 bg-white rounded-2xl shadow-md">
-              <p className="italic mb-2 text-gray-700">"WardUnit ha salvato il nostro server da un attacco! Consigliatissimo a chi tiene alla sicurezza."</p>
+              <p className="italic mb-2 text-gray-700">&quot;WardUnit ha salvato il nostro server da un attacco! Consigliatissimo a chi tiene alla sicurezza.&quot;</p>
               <span className="font-semibold text-blue-700">- Admin di ServerXYZ</span>
             </div>
             <div className="p-6 flex-1 bg-white rounded-2xl shadow-md">
-              <p className="italic mb-2 text-gray-700">"Facile da configurare e con un supporto rapidissimo. Il miglior bot di moderazione!"</p>
+              <p className="italic mb-2 text-gray-700">&quot;Facile da configurare e con un supporto rapidissimo. Il miglior bot di moderazione!&quot;</p>
               <span className="font-semibold text-blue-700">- Mod di DiscordItalia</span>
             </div>
           </div>
@@ -66,23 +67,23 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-4 text-center text-pink-600">Unisciti alla community di WardUnit!</h2>
           <div className="flex gap-4 flex-wrap justify-center">
             <a href="https://discord.gg/jH8feHGm8K" target="_blank" rel="noopener noreferrer" className="transition px-8 py-3 rounded-full font-semibold text-lg shadow border border-blue-400 bg-white text-blue-700 hover:bg-blue-50">Server di Supporto</a>
-            <a href="/comandi" className="transition px-8 py-3 rounded-full font-semibold text-lg shadow border border-pink-400 bg-white text-pink-600 hover:bg-pink-50">Vedi i Comandi</a>
+            <Link href="/funzionalita" className="transition px-8 py-3 rounded-full font-semibold text-lg shadow border border-pink-400 bg-white text-pink-600 hover:bg-pink-50">Vedi i Comandi</Link>
           </div>
         </section>
         <footer className="mt-12 py-6 px-4 bg-[#1e293b] text-center text-sm text-gray-400 animate-fade-in">
           <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
-            <a href="/" className="hover:underline">Home</a>
+            <Link href="/" className="hover:underline">Home</Link>
             <span className="hidden sm:inline">|</span>
-            <a href="/funzionalita" className="hover:underline">Funzionalità</a>
+            <Link href="/funzionalita" className="hover:underline">Funzionalità</Link>
             <span className="hidden sm:inline">|</span>
-            <a href="/shop" className="hover:underline">Shop</a>
+            <Link href="/shop" className="hover:underline">Shop</Link>
             <span className="hidden sm:inline">|</span>
-            <a href="/contatti" className="hover:underline">Contatti</a>
+            <Link href="/contatti" className="hover:underline">Contatti</Link>
             <span className="hidden sm:inline">|</span>
-            <a href="/privacy" className="hover:underline">Privacy</a>
-          </div>
+            <Link href="/privacy" className="hover:underline">Privacy</Link>
+        </div>
           <div className="mt-2">&copy; {new Date().getFullYear()} WardUnit. Tutti i diritti riservati.</div>
-        </footer>
+      </footer>
       </div>
     </div>
   );
