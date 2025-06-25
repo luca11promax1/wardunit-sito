@@ -143,6 +143,7 @@ export default function ProductManager() {
               <tr className="bg-blue-900 text-white">
                 <th className="px-4 py-2">ID</th>
                 <th className="px-4 py-2">Nome</th>
+                <th className="px-4 py-2">Descrizione</th>
                 <th className="px-4 py-2">Prezzo</th>
                 <th className="px-4 py-2">Stato</th>
                 <th className="px-4 py-2">Azioni</th>
@@ -151,17 +152,18 @@ export default function ProductManager() {
             <tbody>
               {products.map((p) => (
                 <tr key={p.id} className="border-b">
-                  <td className="px-4 py-2 text-center">{p.id}</td>
-                  <td className="px-4 py-2">{p.name}</td>
-                  <td className="px-4 py-2">€ {p.price.toFixed(2)}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center text-gray-900">{p.id}</td>
+                  <td className="px-4 py-2 text-gray-900">{p.name}</td>
+                  <td className="px-4 py-2 text-gray-900">{p.description}</td>
+                  <td className="px-4 py-2 text-gray-900">€ {p.price.toFixed(2)}</td>
+                  <td className="px-4 py-2 text-gray-900">
                     {p.active ? (
                       <span className="bg-green-200 text-green-800 px-2 py-1 rounded-full text-xs">Attivo</span>
                     ) : (
                       <span className="bg-red-200 text-red-800 px-2 py-1 rounded-full text-xs">Disattivo</span>
                     )}
                   </td>
-                  <td className="px-4 py-2 flex gap-2">
+                  <td className="px-4 py-2 flex gap-2 text-gray-900">
                     <button
                       className="bg-yellow-400 hover:bg-yellow-500 text-black px-3 py-1 rounded text-xs font-bold"
                       onClick={() => openForm(p)}
