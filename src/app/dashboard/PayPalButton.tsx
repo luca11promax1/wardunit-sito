@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare global {
   interface Window {
-    paypal: any;
+    paypal: unknown;
   }
 }
 
@@ -27,7 +27,7 @@ export default function PayPalButton({ amount = "4.99", onSuccess }: { amount?: 
 
     function renderButton() {
       if (window.paypal && paypalRef.current) {
-        window.paypal.Buttons({
+        (window.paypal as any).Buttons({
           createOrder: (data: unknown, actions: { order: { create: (options: { purchase_units: { amount: { value: string } }[] }) => Promise<string> } }) => {
             return actions.order.create({
               purchase_units: [{ amount: { value: amount } }],

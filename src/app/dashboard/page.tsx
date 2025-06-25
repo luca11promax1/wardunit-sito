@@ -3,7 +3,7 @@ import { useSession, signOut } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import OrdersSection from "./OrdersSection";
 
 const PayPalButton = dynamic(() => import("./PayPalButton"), { ssr: false });
@@ -30,7 +30,6 @@ export default function DashboardPage() {
   const [premiums, setPremiums] = useState<Premium[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const searchParams = useSearchParams();
   const [isStaff, setIsStaff] = useState(false);
 
   const user = session?.user as DiscordUser | undefined;
@@ -87,7 +86,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gradient-to-br from-[#181c3a] to-[#0e1129] py-10 px-4 flex flex-col items-center">
       {/* Profilo utente */}
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-4xl mb-8 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-12">
-        <img src={user.image || "/wardunit-logo.png"} alt="avatar" width={96} height={96} className="rounded-full border-4 border-blue-700 shadow-lg" />
+        <Image src={user.image || "/wardunit-logo.png"} alt="avatar" width={96} height={96} className="rounded-full border-4 border-blue-700 shadow-lg" />
         <div className="flex-1">
           <div className="text-2xl font-bold text-white mb-1 flex items-center gap-3">
             {user.name}
