@@ -8,6 +8,13 @@ declare global {
   }
 }
 
+interface PayPal {
+  Buttons: (options: {
+    createOrder: (data: unknown, actions: any) => Promise<string>;
+    onApprove: (data: unknown, actions: any) => Promise<void>;
+  }) => { render: (element: HTMLElement) => void };
+}
+
 const PAYPAL_CLIENT_ID = "Aab3IZtnPuvggG_GtqmwHpsDa_E_QXeSLrL_5XHnFVtebbuYNQhQo2lU8yTwsmh9d33IWZU7fGSob5tE";
 
 export default function PayPalButton({ amount = "4.99", onSuccess }: { amount?: string, onSuccess?: () => void }) {
@@ -27,7 +34,7 @@ export default function PayPalButton({ amount = "4.99", onSuccess }: { amount?: 
 
     function renderButton() {
       if (window.paypal && paypalRef.current) {
-        (window.paypal as any).Buttons({
+        (window.paypal as PayPal).Buttons({
           createOrder: (data: unknown, actions: { order: { create: (options: { purchase_units: { amount: { value: string } }[] }) => Promise<string> } }) => {
             return actions.order.create({
               purchase_units: [{ amount: { value: amount } }],
