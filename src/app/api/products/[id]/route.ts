@@ -23,14 +23,14 @@ async function isStaff(discordId: string): Promise<boolean> {
 }
 
 // PUT: modifica prodotto (solo staff)
-export async function PUT(req: Request, context: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { discordId, name, description, price, image_url, active } = body;
     if (!discordId || !(await isStaff(discordId))) {
       return NextResponse.json({ error: "Non autorizzato" }, { status: 403 });
     }
-    const id = Number(context?.params?.id);
+    const id = Number(params.id);
     if (!id || isNaN(id)) {
       return NextResponse.json({ error: "ID prodotto non valido" }, { status: 400 });
     }
@@ -45,14 +45,14 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
 }
 
 // DELETE: elimina prodotto (solo staff)
-export async function DELETE(req: Request, context: { params: { id: string } }) {
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { discordId } = body;
     if (!discordId || !(await isStaff(discordId))) {
       return NextResponse.json({ error: "Non autorizzato" }, { status: 403 });
     }
-    const id = Number(context?.params?.id);
+    const id = Number(params.id);
     if (!id || isNaN(id)) {
       return NextResponse.json({ error: "ID prodotto non valido" }, { status: 400 });
     }
