@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare global {
   interface Window {
     paypal: unknown;
@@ -10,8 +9,14 @@ declare global {
 
 interface PayPal {
   Buttons: (options: {
-    createOrder: (data: unknown, actions: any) => Promise<string>;
-    onApprove: (data: unknown, actions: any) => Promise<void>;
+    createOrder: (
+      data: unknown,
+      actions: { order: { create: (options: { purchase_units: { amount: { value: string } }[] }) => Promise<string> } }
+    ) => Promise<string>;
+    onApprove: (
+      data: unknown,
+      actions: { order: { capture: () => Promise<{ payer: { name: { given_name: string } } }> } }
+    ) => Promise<void>;
   }) => { render: (element: HTMLElement) => void };
 }
 
@@ -35,12 +40,18 @@ export default function PayPalButton({ amount = "4.99", onSuccess }: { amount?: 
     function renderButton() {
       if (window.paypal && paypalRef.current) {
         (window.paypal as PayPal).Buttons({
-          createOrder: (data: unknown, actions: { order: { create: (options: { purchase_units: { amount: { value: string } }[] }) => Promise<string> } }) => {
+          createOrder: (
+            data: unknown,
+            actions: { order: { create: (options: { purchase_units: { amount: { value: string } }[] }) => Promise<string> } }
+          ) => {
             return actions.order.create({
               purchase_units: [{ amount: { value: amount } }],
             });
           },
-          onApprove: (data: unknown, actions: { order: { capture: () => Promise<{ payer: { name: { given_name: string } } }> } }) => {
+          onApprove: (
+            data: unknown,
+            actions: { order: { capture: () => Promise<{ payer: { name: { given_name: string } } }> } }
+          ) => {
             return actions.order.capture().then((details: { payer: { name: { given_name: string } } }) => {
               alert("Pagamento completato da " + details.payer.name.given_name);
               if (onSuccess) onSuccess();
@@ -50,7 +61,6 @@ export default function PayPalButton({ amount = "4.99", onSuccess }: { amount?: 
         }).render(paypalRef.current);
       }
     }
-    // eslint-disable-next-line
   }, [amount, onSuccess]);
 
   return <div ref={paypalRef}></div>;
