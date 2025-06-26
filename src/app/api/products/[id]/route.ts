@@ -23,7 +23,7 @@ async function isStaff(discordId: string): Promise<boolean> {
 }
 
 // PUT: modifica prodotto (solo staff)
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(req: Request, context: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { discordId, name, description, price, image_url, active } = body;
@@ -45,7 +45,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
 }
 
 // DELETE: elimina prodotto (solo staff)
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(req: Request, context: { params: { id: string } }) {
   try {
     const body = await req.json();
     const { discordId } = body;
