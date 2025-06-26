@@ -136,6 +136,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -143,7 +147,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma-orders",
@@ -162,8 +166,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma-orders\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_SQLITE_URL\")\n}\n\nmodel orders {\n  id         Int      @id @default(autoincrement())\n  user_id    String\n  amount     Float\n  currency   String\n  product    String\n  status     String\n  created_at DateTime @default(now())\n  paypal_id  String?\n\n  @@map(\"orders\")\n}\n",
-  "inlineSchemaHash": "82d744728d367e1564c3b6039332d364768179297a2a5996a9fda4cee0dd949c",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma-orders\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_SQLITE_URL\")\n}\n\nmodel orders {\n  id         Int      @id @default(autoincrement())\n  user_id    String\n  amount     Float\n  currency   String\n  product    String\n  status     String\n  created_at DateTime @default(now())\n  paypal_id  String?\n\n  @@map(\"orders\")\n}\n",
+  "inlineSchemaHash": "7679a16608df6de2bc85fe106557f8cc34616d7d43bde7de21e1c3e39595e241",
   "copyEngine": true
 }
 config.dirname = '/'
